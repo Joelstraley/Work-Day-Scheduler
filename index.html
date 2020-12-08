@@ -19,6 +19,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://moment.github.io/luxon/global/luxon.js"></script>
     <title>Work Day Scheduler</title>
   </head>
 
@@ -30,9 +33,51 @@
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    </div>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+<script>    
+
+$(document).ready(function() {
+  var now = dayjs()
+  console.log(dayjs())
+
+
+$("#currentDay").text(dayjs().format('dddd, MMMM D'));
+
+
+
+
+
+/*
+-attach date library
+-get present day to appear under header 
+-build out time-block HTML 
+      -bootstrap container (col 2 col-8 col-2)
+      - font awesome SAVE button)
+      - loop through to create 9am - 5pm
+- color-code for Past, Present, Future
+-Can write into each time-block
+-Save button save's what's written into local storage
+-input is still there on page refresh 
+
+
+
+
+--------------------------
+the current day is displayed at the top of the calendar
+WHEN I scroll down
+THEN I am presented with time blocks for standard business hours
+WHEN I view the time blocks for that day
+THEN each time block is color-coded to indicate whether it is in the past, present, or future
+WHEN I click into a time block
+THEN I can enter an event
+WHEN I click the save button for that time block
+THEN the text for that event is saved in local storage
+WHEN I refresh the page
+THEN the saved events persist */
+
+})
+    </script>
   </body>
 </html>
