@@ -40,31 +40,21 @@
 
 $(document).ready(function() {
 
-
 var container = $(".container");
 var hour = $(".hour");
 var now = dayjs();
 var rows = 9
 var columns = 3
+var dataHour = 9
 
 $("#currentDay").text(now.format('dddd, MMMM D'));
-
-// take container, add a for loop to get 10 new rows as children assigning with IDs 1-8; 
-/* 
-var createRows = $()
-
-
-var newDiv = $('<div>My new div</div>');  //create Div Element w/ jquery
-$( "#someOtherElement" ).append(newDiv) */
-
-var dataHour = 9
  
 for(i=0; i < rows; i++){
   var newRow = $('<div class="row time-block">')
   container.append(newRow)
   for(j=0; j < columns; j++){
     if(j === 0){
-      var newColumn0 = $('<div id={dataHour} class="hour col-1">')
+      var newColumn0 = $('<div id=${dataHour} class="hour col-1">')
       if(dataHour > 12){
       }
       newColumn0.text(now.hour(dataHour).format('h A'))
@@ -80,64 +70,9 @@ for(i=0; i < rows; i++){
   }
 }
 
-/* var Row= $('<div>')
-  createRow.addClass("row time-block").attr("id", "row0");
-
-container.append(createRow);
-
-hourCol.text(now.hour(9).format('h A'));
-
- */
-
-
-
-
-
-
-/* var hourCol = $("<div>");
-  hourCol.addClass("col-lg-1 hour");
-  $("#row0").append(hourCol); 
-
-  var timeBlockCol = $("<textarea>");
-    timeBlockCol.addClass("col-lg-10 description");
-    $("#row0").append(timeBlockCol);
-
-  var saveCol = $("<button>");
-    saveCol.addClass("col-lg-1 saveBtn btn fas fa-save");
-    $("#row0").append(saveCol);
-
-
- hourCol.text(now.hour(9).format('h A'));
-
-
- var createRow1= $('<div>')
-  createRow.addClass("row").attr("id", "row1");
-
-container.append(createRow);
-
-var hourCol = $("<div>");
-  hourCol.addClass("col-lg-1 hour");
-  $("#row1").append(hourCol); 
-
-  var timeBlockCol = $("<div>");
-    timeBlockCol.addClass("col-lg-10 timeblock");
-    $("#row1").append(timeBlockCol);
-
-  var saveCol = $("<div>");
-    saveCol.addClass("col-lg-1 saveBtn");
-    $("#row1").append(saveCol);
-
- hourCol.text(now.hour(12).format('h A'));
-
-
- var rowCols = ["row1", "row2", "row3"];
-  rowCols.forEach(function(entry) {
-    console.log(entry);
-}) */
-
 var hourBlock = $(".hour")
 
-function pastpresentfuture() {
+/* function pastpresentfuture() {
   if(parseInt(hour.text()) > parseInt(now.format('h'))){
     newColumn0.attr("class","past");
     console.log();
@@ -148,8 +83,26 @@ function pastpresentfuture() {
   }     
 }
 
-pastpresentfuture(); 
+pastpresentfuture();  */
+function pastpresentfuture() {
+var blockHour = parseInt($(this).attr("dataHour"))
+console.log(now)
+$(".description").each(function(){
+  if(blockHour < now){
+    $(this).addClass("past")
+  }else if(blockHour == now){
+    $(this).removeClass("past")
+    $(this).addClass("present")
+  }else {
+    $(this).removeClass("past")
+    $(this).removeClass("present")
+    $(this).addClass("future")
+  }
+})
+}
 
+
+pastpresentfuture();
 
 
 
@@ -157,21 +110,8 @@ pastpresentfuture();
 
 
 /* 
--build out time-block HTML 
-      -bootstrap container (col 2 col-8 col-2)
-            ROW with classes: 
-             .hour .timeblock .saveBtn 
-
-
-
-
-      - font awesome SAVE button)
-      - loop through to create 9am - 5pm
 - color-code for Past, Present, Future
-          - Color function - if statement 
-    - dayjs().isBefore(dayjs())  
-    - dayjs().isSame(dayjs('2011-01-01'))
-    - dayjs().isAfter(dayjs())  
+     
 -Can write into each time-block
 -Save button save's what's written into local storage
 -input is still there on page refresh 
