@@ -34,6 +34,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://kit.fontawesome.com/1b731901c2.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 <script>    
 
@@ -43,6 +44,8 @@ $(document).ready(function() {
 var container = $(".container");
 var hour = $(".hour");
 var now = dayjs();
+var rows = 9
+var columns = 3
 
 $("#currentDay").text(now.format('dddd, MMMM D'));
 
@@ -52,24 +55,55 @@ var createRows = $()
 
 
 var newDiv = $('<div>My new div</div>');  //create Div Element w/ jquery
-$( "#someOtherElement" ).append(newDiv */
+$( "#someOtherElement" ).append(newDiv) */
 
+var dataHour = 9
+ 
+for(i=0; i < rows; i++){
+  var newRow = $('<div class="row time-block">')
+  container.append(newRow)
+  for(j=0; j < columns; j++){
+    if(j === 0){
+      var newColumn0 = $('<div id={dataHour} class="hour col-1">')
+      if(dataHour > 12){
+      }
+      newColumn0.text(now.hour(dataHour).format('h A'))
+      dataHour++
+      newRow.append(newColumn0)
+    }else if(j === 1){
+      var newColumn1 = $('<textarea class="description col-10">')
+        newRow.append(newColumn1)
+    }else if(j === 2){
+      var newColumn2 = $('<button class="saveBtn btn fas fa-save col-1">')
+       newRow.append(newColumn2)
+    }
+  }
+}
 
- var createRow= $('<div>')
-  createRow.addClass("row").attr("id", "row0");
+/* var Row= $('<div>')
+  createRow.addClass("row time-block").attr("id", "row0");
 
 container.append(createRow);
 
-var hourCol = $("<div>");
+hourCol.text(now.hour(9).format('h A'));
+
+ */
+
+
+
+
+
+
+/* var hourCol = $("<div>");
   hourCol.addClass("col-lg-1 hour");
   $("#row0").append(hourCol); 
 
-  var timeBlockCol = $("<div>");
-    timeBlockCol.addClass("col-lg-10 timeblock");
+  var timeBlockCol = $("<textarea>");
+    timeBlockCol.addClass("col-lg-10 description");
     $("#row0").append(timeBlockCol);
 
-  var saveCol = $("<div>");
-    saveCol.addClass("col-lg-1 saveBtn");
+  var saveCol = $("<button>");
+    saveCol.addClass("col-lg-1 saveBtn btn fas fa-save");
     $("#row0").append(saveCol);
 
 
@@ -96,51 +130,27 @@ var hourCol = $("<div>");
  hourCol.text(now.hour(12).format('h A'));
 
 
+ var rowCols = ["row1", "row2", "row3"];
+  rowCols.forEach(function(entry) {
+    console.log(entry);
+}) */
 
- 
-console.log(parseInt(hourCol.text));
-
-
+var hourBlock = $(".hour")
 
 function pastpresentfuture() {
-  if(parseInt(hour.text) > parseInt(now.format('h'))){
-    timeBlockCol.addClass("past")
-  } else if (parseInt(hour.text) = parseInt(now.format('h'))){
-    timeBlockCol.addClass("present")
-  } else{
-    timeBlockCol.addClass("future")
+  if(parseInt(hour.text()) > parseInt(now.format('h'))){
+    newColumn0.attr("class","past");
+    console.log();
+  } else if (parseInt(hour.text()) === parseInt(now.format('h'))){
+    newColumn0.attr("class","present");
+  } else {
+    newColumn0.attr("class","future");
   }     
 }
 
 pastpresentfuture(); 
 
 
-
-
-/*  for (var index=0; index < rows.length ; index++) {
-    console.log(rows[index]);
-}
-
-var rowCols = ["row1", "row2", "row3"];
-rowCols.forEach(function(entry) {
-    console.log(entry);
-});
-
- */
-/* $(myObj).attr({"data-test-1": num1, "data-test-2": num2});
-
-
-var row1thru9 = 
-
-
-
-for (var i = 0; i < 10; i++) {
-    var outsidediv = $('<div id="outsidediv' + i +'" class="outsidediv" />').appendTo('body');
-    
-    for (var j = 0; j < 10; j++) {
-      var innerdiv = $('<div class="innerdiv"/>').appendTo('.outsidediv:last-child');
-    }
-} */
 
 
 
