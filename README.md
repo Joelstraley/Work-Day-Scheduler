@@ -10,11 +10,11 @@ A user can input scheduling information into the description area of each input 
 
 Repository contains the following: 
 
-* -index.html (site is live at: https://joelstraley.github.io/Work-Day-Scheduler/)
-* -README.md
+* index.html (site is live at: https://joelstraley.github.io/Work-Day-Scheduler/)
+* README.md
 * Assets folder
-  * -script.js
-  * -style.css
+  * script.js
+  * style.css
 
 ## Screenshots
 ![alt text](https://github.com/Joelstraley/Work-Day-Scheduler/blob/main/assets/Work%20Day%20Scheduler%20screenshot%201.png?raw=true)
