@@ -42,6 +42,8 @@ $(document).ready(function() {
 
 var container = $(".container");
 var hour = $(".hour");
+var saveBtn = $(".saveBtn");
+var description = $(".description");
 var now = dayjs();
 var rows = 9
 var columns = 3
@@ -54,37 +56,36 @@ for(i=0; i < rows; i++){
   container.append(newRow)
   for(j=0; j < columns; j++){
     if(j === 0){
-      var newColumn0 = $('<div id=${dataHour} class="hour col-1">')
-      if(dataHour > 12){
-      }
+      var newColumn0 = $(`<div id=${dataHour} class="hour col-1">`)
       newColumn0.text(now.hour(dataHour).format('h A'))
       dataHour++
       newRow.append(newColumn0)
     }else if(j === 1){
-      var newColumn1 = $('<textarea class="description col-10">')
+      var newColumn1 = $('<textarea class="description col-10" name="userInput">')
         newRow.append(newColumn1)
     }else if(j === 2){
-      var newColumn2 = $('<button class="saveBtn btn fas fa-save col-1">')
+      var newColumn2 = $('<button class="saveBtn btn fas fa-save col-1"> input=')
        newRow.append(newColumn2)
     }
   }
 }
 
-var hourBlock = $(".hour")
 
-/* function pastpresentfuture() {
-  if(parseInt(hour.text()) > parseInt(now.format('h'))){
-    newColumn0.attr("class","past");
-    console.log();
+console.log(parseInt(j));
+
+function pastpresentfuture() {
+  if(parseInt(dataHour) > parseInt(now.format('h'))){
+    description.addClass("past");
+    
   } else if (parseInt(hour.text()) === parseInt(now.format('h'))){
-    newColumn0.attr("class","present");
+    description.addClass("present");
   } else {
-    newColumn0.attr("class","future");
+    description.addClass("future");
   }     
 }
 
-pastpresentfuture();  */
-function pastpresentfuture() {
+pastpresentfuture();  
+/* function pastpresentfuture() {
 var blockHour = parseInt($(this).attr("dataHour"))
 console.log(now)
 $(".description").each(function(){
@@ -99,11 +100,30 @@ $(".description").each(function(){
     $(this).addClass("future")
   }
 })
+} */
+
+
+saveBtn.on("click", function() {
+   var time = $(this).siblings(".hour").text();
+   var input = $(this).siblings(".userInput").val();
+   localStorage.setItem(time, input);
+});
+
+function save(){
+  $(".hour").each(function(){
+    var currentTime = $(this).text();
+    var storedInput = localStorage.getItem(currentTime);
+
+    if (storedInput !== null) {
+      $(this).siblings(".userInput").val(storedInput);
+    }
+  console.log(storedInput); 
+  })
 }
 
 
 pastpresentfuture();
-
+save();
 
 
 
