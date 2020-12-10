@@ -30,10 +30,8 @@ $(document).ready(function() {
       }
     }
     
-    
-    console.log(parseInt(j));
-    
-    function pastpresentfuture() {
+        
+   /*  function pastpresentfuture() {
       if(parseInt(dataHour) > parseInt(now.format('h'))){
         description.addClass("past");
         
@@ -42,25 +40,29 @@ $(document).ready(function() {
       } else {
         description.addClass("future");
       }     
-    }
-    
-    pastpresentfuture();  
-    /* function pastpresentfuture() {
-    var blockHour = parseInt($(this).attr("dataHour"))
-    console.log(now)
-    $(".description").each(function(){
-      if(blockHour < now){
-        $(this).addClass("past")
-      }else if(blockHour == now){
-        $(this).removeClass("past")
-        $(this).addClass("present")
-      }else {
-        $(this).removeClass("past")
-        $(this).removeClass("present")
-        $(this).addClass("future")
-      }
-    })
     } */
+
+    console.log(parseInt($(hour).attr("id")))
+
+    function pastpresentfuture() {
+        var blockHour = parseInt($(this).attr("id"))
+        var present =  parseInt(now.format('h'))
+        $(".description").each(function(){
+          if(blockHour < present){
+            $(this).addClass("past")
+          }else if(blockHour == present){
+            $(this).removeClass("past")
+            $(this).addClass("present")
+          }else {
+            $(this).removeClass("past")
+            $(this).removeClass("present")
+            $(this).addClass("future")
+          }
+        })
+        }
+
+    pastpresentfuture();  
+    /* */
     
     
     saveBtn.on("click", function() {
@@ -77,7 +79,6 @@ $(document).ready(function() {
         if (storedInput !== null) {
           $(this).siblings(".userInput").val(storedInput);
         }
-      console.log(storedInput); 
       })
     }
     
